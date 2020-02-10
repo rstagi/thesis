@@ -5,7 +5,7 @@ cd extrae
 ./bootstrap && ./configure 	--without-unwind \
                             --without-mpi \
                             --without-dyninst \
-			    --without-papi \
+			    --with-papi=/usr \
                             --enable-pthread \
                             --with-java-jdk=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
                             --with-java-aspectj=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
