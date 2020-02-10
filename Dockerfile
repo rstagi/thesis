@@ -2,7 +2,7 @@
 FROM opensuse/leap
 
 # Download and install a dependency
-RUN zypper install -y gcc gcc-c++ gcc-fortran binutils-devel
+RUN zypper install -y gcc gcc-c++ gcc-fortran binutils-devel which
 RUN zypper install -t pattern -y devel_C_C++ 
 RUN zypper install -y java java-1_8_0-openjdk java-1_8_0-openjdk-devel
 RUN zypper install -y papi papi-devel
