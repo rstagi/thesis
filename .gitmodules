@@ -1,3 +1,3 @@
-[submodule "extrae"]
-	path = extrae
+[submodule "installation/extrae"]
+	path = installation/extrae
 	url = git@github.com:rstagi/extrae.git
