@@ -6,4 +6,4 @@ TRACE*
 *.pcf
 set-0
 extraej.*
-*.jar
+examples/standard/*.jar

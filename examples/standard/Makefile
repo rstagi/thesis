@@ -20,7 +20,5 @@ PiThreaded.class: PiThreaded.java
 run: PiExample.jar
 	./run_javatrace.sh PiExample
 
-runjar: PiExample.jar
-	./run_javatrace.sh -jar PiExample.jar
 clean:
-	rm -fr *class *jar set-0 TRACE.* *pcf *row *prv extraej.*
+	rm -fr *.class *.jar set-0 TRACE.* *.pcf *.row *.prv extraej.*

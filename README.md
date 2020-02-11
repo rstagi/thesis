@@ -40,8 +40,14 @@ This will copy all the files of the current directory (add `-R` to do it recursi
 
 ### Examples ###
 
-There is a folder named `example` which contains an example of usage. After having built the image using `build_docker_javatrace.sh`, browse into the `example` folder and run:
+There is a folder named `examples` which contains some examples of usage. After having built the image using `build_docker_javatrace.sh`, browse into the `example/standard` folder and run:
 
 	make run
 
-This command will build and run the program inside the docker image.
+This command will build and run the program in the standard mode (using `.class` files) inside the docker image.
+
+To run the example in jar mode, and so using a `.jar` file, browse into `example/jarmode` and run again:
+
+	make run
+
+
