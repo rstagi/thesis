@@ -30,11 +30,10 @@ The installation folder contains a subdirectory named `extrae`, which is clearly
 
 ### Usage ###
 
-Using the program to trace JAVA software, is as simple as running the other script contained in the root folder: `run_javatrace.sh`. To run it by tracing a program, just place it in the directory with the `.class` or `.jar` files of interest, and run one of the following:
-
+Using the program to trace JAVA software, is as simple as running the other script contained in the root folder: `run_javatrace.sh`. Just place it in the directory with the `.class` or `.jar` files of interest, and run one of the following:
+ 
 	./run_javatrace.sh <class_to_be_traced>
 	./run_javatrace.sh -jar <jar_file_to_be_traced>
 
-This will copy all the files of the current directory (recursively, so be careful with the location) into a temp directory. This will be copied inside the docker image, which will run the java program with Extrae tracing. Finally, the output of the execution inside the docker image, will be copied back to the current folder (again, recursively).
+This will copy all the files of the current directory (add `-R` to do it recursively, but be careful with the location) into a temp directory, which will be copied inside the docker image, that will finally run the java program with Extrae tracing. In the end, the output of the execution, inside the docker image, will be copied back to the current folder (this time recursively).
 
-At the moment of writing this README, there is the intention of adding a new option to this script to avoid the recursive copy (or to enable it), but it has not been added yet.
