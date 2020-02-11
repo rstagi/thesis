@@ -2,6 +2,8 @@
 
 cd extrae
 
+git clean -fdx
+
 ./bootstrap && ./configure 	--without-unwind \
                             --without-mpi \
                             --without-dyninst \
@@ -9,6 +11,6 @@ cd extrae
                             --enable-pthread \
                             --with-java-jdk=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
                             --with-java-aspectj=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
-                            --with-java-aspectj-weaver=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib \
                             --with-binary-type=64
                             CC=gcc CXX=g++
+                            #--with-java-aspectj-weaver=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib \
