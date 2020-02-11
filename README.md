@@ -37,3 +37,11 @@ Using the program to trace JAVA software, is as simple as running the other scri
 
 This will copy all the files of the current directory (add `-R` to do it recursively, but be careful with the location) into a temp directory, which will be copied inside the docker image, that will finally run the java program with Extrae tracing. In the end, the output of the execution, inside the docker image, will be copied back to the current folder (this time recursively).
 
+
+### Examples ###
+
+There is a folder named `example` which contains an example of usage. After having built the image using `build_docker_javatrace.sh`, browse into the `example` folder and run:
+
+	make run
+
+This command will build and run the program inside the docker image.
