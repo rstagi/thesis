@@ -13,4 +13,3 @@ git clean -fdx
                             --with-java-aspectj=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
                             --with-binary-type=64
                             CC=gcc CXX=g++
-                            #--with-java-aspectj-weaver=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib \
