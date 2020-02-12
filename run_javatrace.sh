@@ -1,22 +1,24 @@
 #!/bin/bash
 
 if [ $# = 0 ]; then
-	printf "Usage: $0 [-jar] [-r, -R] <target> \n"
+	printf "Usage: $0 [-jar] [-r, -R] [-show] <target> \n"
 	exit 1
 fi
 
 recursive="no"
 jarmode="no"
+show="no"
 target=""
 options=""
 executable_name=`basename $0`
 while test $# != 0; do
 	arg=$1
-	echo $arg
 	if [ "$arg" = "-R" -o "$arg" = "-r" ]; then
 		recursive="yes"
 	elif [ "$arg" = "-jar" ]; then
 		jarmode="yes"
+	elif [ "$arg" = "-show" ]; then
+		show="yes"
 	else
 		target=$arg
 	fi
@@ -43,11 +45,16 @@ rm $tmp_dir/$executable_name
 printf "\t[...ok!]\n"
 
 printf "Running docker container extrae/javatrace "
-container_id=$(docker run -d -t extrae/javatrace bash)
+container_id=$(docker run -d -t \
+			--env="DISPLAY" \
+			--net=host \
+			--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
+			extrae/javatrace /bin/bash )
+
 printf "\t[...ok!] Container ID: $container_id\n"
 
 printf "Removing old files from the container "
-docker exec -it $container_id rm -r home/javatraces >& /dev/null
+docker exec -it $container_id rm -r /home/javatraces >& /dev/null
 if [ $? = 0 ]; then
 	printf "\t[...ok!]\n"
 else
@@ -82,8 +89,20 @@ fi
 cp -r $tmp_dir/javatraces/* ./
 rm -r $tmp_dir
 
+if [[ "$show" = "yes" ]]; then
+	printf "Running Paraver to visualize the trace..."
+	paraver_file=$( docker exec -it $container_id ls /home/javatracees | grep .prv )
+	docker exec -it $container_id /usr/share/wxparaver/bin/wxparaver /home/javatraces/$(ls | grep .prv)
+fi
+
 printf "Stopping the container "
 docker stop $container_id > /dev/null
+if [ $? -eq 0 ]; then
+	printf "\t[...ok!]\n"
+fi
+
+printf "Deleting the container "
+docker rm $container_id > /dev/null
 if [ $? -eq 0 ]; then
 	printf "\t[...ok!]\n"
 fi

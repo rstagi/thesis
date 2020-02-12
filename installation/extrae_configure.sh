@@ -2,7 +2,7 @@
 
 cd extrae
 
-git clean -fdx
+git clean -fdx #TODO remove
 
 ./bootstrap && ./configure 	--without-unwind \
                             --without-mpi \
