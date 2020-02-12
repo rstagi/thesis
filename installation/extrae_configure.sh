@@ -2,8 +2,6 @@
 
 cd extrae
 
-git clean -fdx #TODO remove
-
 ./bootstrap && ./configure 	--without-unwind \
                             --without-mpi \
                             --without-dyninst \
