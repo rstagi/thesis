@@ -32,10 +32,23 @@ The installation folder contains a subdirectory named `extrae`, which is clearly
 
 Using the program to trace JAVA software, is as simple as running the other script contained in the root folder: `run_javatrace.sh`. Just place it in the directory with the `.class` or `.jar` files of interest, and run one of the following:
  
-	./run_javatrace.sh <class_to_be_traced>
-	./run_javatrace.sh -jar <jar_file_to_be_traced>
+	./run_javatrace.sh <java_class_target>
+	./run_javatrace.sh -jar <jar_file_target>
 
 This will copy all the files of the current directory (add `-R` to do it recursively, but be careful with the location) into a temp directory, which will be copied inside the docker image, that will finally run the java program with Extrae tracing. In the end, the output of the execution, inside the docker image, will be copied back to the current folder (this time recursively).
+
+To shoe the trace using Paraver, the script `show_trace.sh` is provided. An installation on local machine is recommended, though.
+
+To show the trace using the trace using `show_trace.sh`, just run the following command:
+	
+	./show_trace.sh <prv_file>
+
+To add `.pcf` and `.row` files, there are two options available: `-conf <pcf_file>` and `-row <row_file>`.
+
+The trace can be shown in the same context of the execution, by adding `-show` to the call to `run_javatrace.sh`. An example:
+
+	./run_javatrace.sh -show <java_target>
+
 
 
 ### Examples ###
@@ -45,9 +58,19 @@ There is a folder named `examples` which contains some examples of usage. After 
 	make run
 
 This command will build and run the program in the standard mode (using `.class` files) inside the docker image.
+To show the traces in Paraver, run also:
 
-To run the example in jar mode, and so using a `.jar` file, browse into `example/jarmode` and run again:
+	make show
 
-	make run
+To run and show with a single command, there's also the following option:
+
+	make runshow
+
+
+To run the example in jar mode, and so using a `.jar` file, browse into `example/jarmode` and run again one of the following:
+
+* `make run` followed by `make show`
+* `make runshow`
+
 
 
