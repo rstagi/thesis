@@ -7,3 +7,4 @@ TRACE*
 set-0
 extraej.*
 examples/standard/*.jar
+*.csv

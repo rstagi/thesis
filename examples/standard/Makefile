@@ -27,4 +27,4 @@ show:
 	./show_trace.sh -conf PiExample.pcf -row PiExample.row PiExample.prv
 
 clean:
-	rm -fr *.class *.jar set-0 TRACE.* *.pcf *.row *.prv extraej.*
+	rm -fr *.csv *.class *.jar set-0 TRACE.* *.pcf *.row *.prv extraej.*
