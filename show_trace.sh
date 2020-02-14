@@ -39,7 +39,7 @@ if [ "$conf" != "none" ]; then
 	cp $conf $tmp_dir >& /dev/null
 fi
 if [ "$row" != "none" ]; then
-	cp $row $tmp_dire >& /dev/null
+	cp $row $tmp_dir >& /dev/null
 fi
 printf "\t[...ok!]\n"
 
