@@ -25,11 +25,15 @@ while test $# != 0; do
 	shift
 done
 
-if [ ! -f $target ]; then
+if [ [ "$jarmode" = "yes" -a ! -f $target ] -o "$target" = "" ]; then
 	printf "Please, specifiy a valid target!\n"
 	exit 1
 else
-    target_dir=$(dirname "$target")
+    if [ "$jarmode" = "yes" ]; then
+        target_dir=$(dirname "$target")
+    else
+        target_dir=$(pwd)
+    fi
 	printf "\n------ Executing javatrace program on target $target ------\n\n\n"
 fi
 

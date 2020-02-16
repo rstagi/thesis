@@ -1,4 +1,5 @@
-include Makefile.inc
+JAR=jar
+JAVAC=javac
 
 PiExample.jar: PiSerial.class PiThread.class PiThreaded.class PiExample.class
 	@echo "Main-Class: PiExample" > MANIFEST

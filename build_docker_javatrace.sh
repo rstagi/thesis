@@ -4,6 +4,10 @@ if [ "$1" = "-pull" ]; then
 	shift
 	branch=$1
 	printf "\n--- UPDATING Extrae SUBMODULE ---\n\n"
+    if [ "$branch" = "" ]; then
+        branch=javatrace
+    fi
+
 	git submodule update --recursive --remote
 	cd installation/extrae; git clean -xdf; git checkout $branch; git pull; cd ../..;
 fi
