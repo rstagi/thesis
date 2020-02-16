@@ -9,7 +9,7 @@ This project is my Master's Thesis, carried on in the Universidad Politecnica de
 
 In the root directory there are just this README, a Dockerfile and two scripts file to help in the usage of the package. The `installation` folder contains all the programs which need to be installed inside  the Docker image. Inside `installation` there's another folder, named `extrae`, which is the tracing program from the BSC. It actually is a *git submdoule*, which point to a personal fork of the original repository. In order to clone the whole project properly, run
 
-	git clone git@github.com:rstagi/thesis.git --recursive
+	git clone https://github.com/rstagi/thesis.git --recursive
 
 
 
