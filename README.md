@@ -75,4 +75,7 @@ To run the example in jar mode, and so using a `.jar` file, browse into `example
 * `make run` followed by `make show`
 * `make runshow`
 
+### Documentation ###
+
+In the folder named `docs` there are all the PDFs files corresponding to Reports and Thesis drafts.
 
