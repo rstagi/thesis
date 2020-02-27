@@ -17,14 +17,20 @@ PiThread.class: PiThread.java
 PiThreaded.class: PiThreaded.java
 	$(JAVAC) $<
 
-run: PiExample.jar
+run: PiExample.jar 
 	./run_javatrace.sh PiExample
+
+runjar: PiExample.jar 
+	./run_javatrace.sh -jar PiExample.jar
 
 runshow: PiExample.jar
 	./run_javatrace.sh -show PiExample
+
+runjarshow: PiExample.jar
+	./run_javatrace.sh -show -jar PiExample.jar
 
 show:
 	./show_trace.sh -conf PiExample.pcf -row PiExample.row PiExample.prv
 
 clean:
-	rm -fr *.csv *.class *.jar set-0 TRACE.* *.pcf *.row *.prv extraej.*
+	rm -fr *.csv *.class set-0 TRACE.* *.jar *.pcf *.row *.prv extraej.*
