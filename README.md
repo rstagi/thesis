@@ -9,7 +9,7 @@ This project is my Master's Thesis, carried on in the Universidad Politecnica de
 
 In the root directory there are just this README, a Dockerfile and two scripts file to help in the usage of the package. The `installation` folder contains all the programs which need to be installed inside  the Docker image. Inside `installation` there's another folder, named `extrae`, which is the tracing program from the BSC. It actually is a *git submdoule*, which point to a personal fork of the original repository. In order to clone the whole project properly, run
 
-	git clone git@github.com:rstagi/thesis.git --recursive
+	git clone https://github.com/rstagi/thesis.git --recursive
 
 
 
@@ -27,6 +27,7 @@ It will install all the necessary tools and programs, and finally it will copy t
 
 The installation folder contains a subdirectory named `extrae`, which is clearly the folder containing all the sources to build the program. To synchronize with the official repository, that directory is in reality a submodule to a fork of the original repository. The custom code will be placed in a branch called `javatrace`.
 
+By specificing the option `-pull` to the building script, it will checkout on the `javatrace` branch of the submodule. Or, alternatively, it can be specified the branch or the tag on which you want to checkout by adding it after the option: `-pull <target_branch_or_tag>`. In this way, all the different versions of Extrae can be tried with this environment.
 
 ### Usage ###
 
@@ -53,7 +54,9 @@ The trace can be shown in the same context of the execution, by adding `-show` t
 
 ### Examples ###
 
-There is a folder named `examples` which contains some examples of usage. After having built the image using `build_docker_javatrace.sh`, browse into the `example/standard` folder and run:
+There is a folder named `examples` which contains some examples of usage. After having built the image using `build_docker_javatrace.sh`, you can decide to run either the "jarmode" or the "standard" example.
+
+For the latter, you can browse into the `examples/standard` folder and run:
 
 	make run
 
@@ -72,5 +75,7 @@ To run the example in jar mode, and so using a `.jar` file, browse into `example
 * `make run` followed by `make show`
 * `make runshow`
 
+### Documentation ###
 
+In the folder named `docs` there are all the PDFs files corresponding to Reports and Thesis drafts.
 

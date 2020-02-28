@@ -25,10 +25,15 @@ while test $# != 0; do
 	shift
 done
 
-if [ "$target" = "" ]; then
-	printf "Please, specifiy a target!\n"
+if [ [ "$jarmode" = "yes" -a ! -f $target ] -o "$target" = "" ]; then
+	printf "Please, specifiy a valid target!\n"
 	exit 1
 else
+    if [ "$jarmode" = "yes" ]; then
+        target_dir=$(dirname "$target")
+    else
+        target_dir=$(pwd)
+    fi
 	printf "\n------ Executing javatrace program on target $target ------\n\n\n"
 fi
 
@@ -40,7 +45,7 @@ if [ "$recursive" = "yes" ]; then
 	printf "in recursive mode "
 fi
 
-cp $options ./* $tmp_dir >& /dev/null
+cp $options $target_dir/* $tmp_dir >& /dev/null
 rm $tmp_dir/$executable_name
 printf "\t[...ok!]\n"
 
@@ -86,7 +91,7 @@ if [ $? -eq 0 ]; then
 else
 	printf "\t[Error!]\n"
 fi
-cp -r $tmp_dir/javatraces/* ./
+cp -r $tmp_dir/javatraces/* $target_dir/
 rm -r $tmp_dir
 
 if [[ "$show" = "yes" ]]; then
