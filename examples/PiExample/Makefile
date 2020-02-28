@@ -22,13 +22,13 @@ run: PiExample.jar
 	../../run_javatrace.sh PiExample
 
 runjar: PiExample.jar 
-	./run_javatrace.sh -jar PiExample.jar
+	../../run_javatrace.sh -jar PiExample.jar
 
 runshow: PiExample.jar
 	../../run_javatrace.sh -show PiExample
 
 runjarshow: PiExample.jar
-	./run_javatrace.sh -show -jar PiExample.jar
+	../../run_javatrace.sh -show -jar PiExample.jar
 
 show:
 	../../show_trace.sh -conf PiExample.pcf -row PiExample.row PiExample.prv
