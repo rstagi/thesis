@@ -34,7 +34,7 @@ By specificing the option `-pull` to the building script, it will checkout on th
 Using the program to trace JAVA software, is as simple as running the other script contained in the root folder: `run_javatrace.sh`. Just place it in the directory with the `.class` or `.jar` files of interest, and run one of the following:
  
 	./run_javatrace.sh <java_class_target>
-	./run_javatrace.sh -jar <jar_file_target>
+	./run_javatrace.sh -jar <jar_file> <java_class>
 
 This will copy all the files of the current directory (add `-R` to do it recursively, but be careful with the location) into a temp directory, which will be copied inside the docker image, that will finally run the java program with Extrae tracing. In the end, the output of the execution, inside the docker image, will be copied back to the current folder (this time recursively).
 
