@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# = 0 ]; then
-	printf "Usage: $0 [-jar <JarFile>] [-r, -R] [-show] <target> \n"
+	printf "Usage: $0 [-jar <JarFile>] [-r, -R] [-show] [-stop] <target> \n"
 	exit 1
 fi
 
@@ -9,7 +9,8 @@ recursive="no"
 jartarget=""
 show="no"
 target=""
-options=""
+options="i"
+stop="no"
 executable_name=`basename $0`
 while test $# != 0; do
 	arg=$1
@@ -20,7 +21,9 @@ while test $# != 0; do
 		jartarget=$1
 	elif [ "$arg" = "-show" ]; then
 		show="yes"
-	else
+	elif [ "$arg" = "-stop" ]; then
+        stop="yes"
+    else
 		target=$arg
 	fi
 	shift
@@ -72,12 +75,15 @@ else
 	printf "\t[Error!]\n"
 fi
 
-printf "Executing the program "
+if [ "$stop" = "yes" ]; then
+    read -p "Press any key to start the execution..."
+fi
+
+printf "Executing the program inside the docker image.\n\n"
+
 if [ "$jartarget" != "" ]; then
 	options="-jar $jartarget"
-	printf "in jar mode "
 fi
-printf "inside the docker image.\n\n"
 
 docker exec -it -w /home/javatraces -e CLASSPATH=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib/ -e EXTRAE_CONFIG_FILE=extrae.xml $container_id extraej -v -keep ${options} -- ${target}
 

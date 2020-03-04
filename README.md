@@ -51,6 +51,32 @@ The trace can be shown in the same context of the execution, by adding `-show` t
 	./run_javatrace.sh -show <java_target>
 
 
+### Debug inside Docker ###
+
+To debug inside the Docker image there are two different methods.
+The script `debug_javatrace.sh` detects in automatic the docker image and the java program, and executes `gdb` on it.
+The usage is very simple, it's enough to run it before running the script `run_javatrace.sh`. It will begin listening to detect at first the next container from the `extrae/javatrace` image, and then it will wai for the java program.
+So, open a terminal and run:
+
+    ./debug_javatrace.sh
+
+And then, on another terminal:
+
+    ./run_javatrace <options_and_target>
+
+In this way, you will be inside gdb to debug the java program.
+Of course, it'll be possible to debug at "C level", not at "JAVA level". I used this method to debug Extrae.
+
+
+The second method to debug is at your choice. You can use the option `-stop` of `run_javatrace.sh`.
+
+    ./run_javatrace -stop <target>
+
+In this way, it will start the container and then it'll stop asking the user to press a key.
+Before pressing a key, it's possible to run another terminal (using for example `docker exec -it <container_id> /bin/bash), by using the container ID provided by `run_javatrace.sh`, and run whatever method you wish, installing the debugger of your choice.
+
+I'm currently working on a solution to debug at JAVA level and maybe to connect it with some IDE. The priority in doing this, however, is lower than other things for sure more important.
+
 
 ### Examples ###
 
