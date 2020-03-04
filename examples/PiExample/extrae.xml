@@ -6,7 +6,7 @@
  type="paraver"
 >
 
-  <user-functions enabled="no" list="function-list" exclude-automatic-functions="no">
+  <user-functions enabled="yes" list="function-list" exclude-automatic-functions="no">
     <counters enabled="yes" />
   </user-functions>
 

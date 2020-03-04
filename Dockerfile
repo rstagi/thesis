@@ -11,6 +11,7 @@ RUN zypper install -y gtk2-devel
 #libgomp.so.1 libpng12.so.0 libgthread-2.0.so.0 libXxf86vm.so.1
 RUN zypper install -y vim
 RUN zypper install -y bzip2
+RUN zypper install -y gdb
 
 RUN zypper install -y lato-fonts glibc-locale glibc-i18ndata
 RUN localedef -i en_US -f UTF-8 en_US

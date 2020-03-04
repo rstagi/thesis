@@ -1,5 +1,5 @@
-JAR=jar
-JAVAC=javac
+JAVAC=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/bin/javac
+JAR=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/bin/jar
 
 PiExample.jar: PiSerial.class PiThread.class PiThreaded.class PiExample.class
 	@echo "Main-Class: PiExample" > MANIFEST

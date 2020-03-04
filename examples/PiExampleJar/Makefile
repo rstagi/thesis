@@ -1,9 +1,9 @@
 
 run: 
-	../../run_javatrace.sh -jar PiExample.jar
+	../../run_javatrace.sh -jar PiExample.jar PiExample
 
 runshow:
-	../../run_javatrace.sh -jar -show PiExample.jar
+	../../run_javatrace.sh -jar PiExample.jar -show PiExample
 
 show:
 	../../show_trace.sh -conf PiExample.pcf -row PiExample.row PiExample.prv

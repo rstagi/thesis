@@ -1,9 +1,9 @@
 
 run: 
-	../../run_javatrace.sh -jar ForkJoin.jar
+	../../run_javatrace.sh -jar ForkJoin.jar Main
 
 runshow:
-	../../run_javatrace.sh -jar -show ForkJoin.jar
+	../../run_javatrace.sh -jar ForkJoin.jar -show Main
 
 show:
 	../../show_trace.sh -conf ForkJoin.pcf -row ForkJoin.row ForkJoin.prv

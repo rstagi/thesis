@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if [ $# = 0 ]; then
-	printf "Usage: $0 [-jar] [-r, -R] [-show] <target> \n"
+	printf "Usage: $0 [-jar <JarFile>] [-r, -R] [-show] <target> \n"
 	exit 1
 fi
 
 recursive="no"
-jarmode="no"
+jartarget=""
 show="no"
 target=""
 options=""
@@ -16,7 +16,8 @@ while test $# != 0; do
 	if [ "$arg" = "-R" -o "$arg" = "-r" ]; then
 		recursive="yes"
 	elif [ "$arg" = "-jar" ]; then
-		jarmode="yes"
+        shift
+		jartarget=$1
 	elif [ "$arg" = "-show" ]; then
 		show="yes"
 	else
@@ -25,15 +26,11 @@ while test $# != 0; do
 	shift
 done
 
-if [ [ "$jarmode" = "yes" -a ! -f $target ] -o "$target" = "" ]; then
-	printf "Please, specifiy a valid target!\n"
+if [[ "$target" = "" ]]; then
+	printf "Please, specifiy a valid target\n"
 	exit 1
 else
-    if [ "$jarmode" = "yes" ]; then
-        target_dir=$(dirname "$target")
-    else
-        target_dir=$(pwd)
-    fi
+    target_dir=$(pwd)
 	printf "\n------ Executing javatrace program on target $target ------\n\n\n"
 fi
 
@@ -76,13 +73,13 @@ else
 fi
 
 printf "Executing the program "
-if [ "$jarmode" = "yes" ]; then
-	options=-jar
+if [ "$jartarget" != "" ]; then
+	options="-jar $jartarget"
 	printf "in jar mode "
 fi
 printf "inside the docker image.\n\n"
 
-docker exec -it -w /home/javatraces -e EXTRAE_CONFIG_FILE=extrae.xml $container_id extraej ${options} -- ${target}
+docker exec -it -w /home/javatraces -e CLASSPATH=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib/ -e EXTRAE_CONFIG_FILE=extrae.xml $container_id extraej -v -keep ${options} -- ${target}
 
 printf "Copying files back to the temp directory "
 docker cp $container_id:home/javatraces/ $tmp_dir/ > /dev/null
