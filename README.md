@@ -64,18 +64,18 @@ And then, on another terminal:
 
     ./run_javatrace <options_and_target>
 
-In this way, you will be inside gdb to debug the java program.
+In this way, the user will be inside gdb to debug the JAVA program.
 Of course, it'll be possible to debug at "C level", not at "JAVA level". I used this method to debug Extrae.
 
 
-The second method to debug is at your choice. You can use the option `-stop` of `run_javatrace.sh`.
+The second method to debug is using the terminal for a custom configuration. One can use the option `-stop` of `run_javatrace.sh`.
 
     ./run_javatrace -stop <target>
 
 In this way, it will start the container and then it'll stop asking the user to press a key.
-Before pressing a key, it's possible to run another terminal (using for example `docker exec -it <container_id> /bin/bash), by using the container ID provided by `run_javatrace.sh`, and run whatever method you wish, installing the debugger of your choice.
+Before pressing a key, it's possible to run another terminal (using for example `docker exec -it <container_id> /bin/bash), by using the container ID provided by `run_javatrace.sh`, and run the method of choice.
 
-I'm currently working on a solution to debug at JAVA level and maybe to connect it with some IDE. The priority in doing this, however, is lower than other things for sure more important.
+I'm thinking on a solution to debug at JAVA level and maybe to connect it with some IDE. The priority in doing this, however, is lower than other things for sure more important.
 
 
 ### Examples ###
