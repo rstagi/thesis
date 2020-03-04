@@ -51,7 +51,7 @@ container_id=$(docker run -d -t \
 			--env="DISPLAY" \
 			--net=host \
 			--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
-			extrae/javatrace /bin/bash )
+			extrae/javatrace )
 
 printf "\t[...ok!] Container ID: $container_id\n"
 
