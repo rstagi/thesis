@@ -10,7 +10,7 @@
     <counters enabled="yes" />
   </user-functions>
 
-  <pthread enabled="yes">
+  <pthread enabled="no">
     <locks enabled="no" />
     <counters enabled="yes" />
   </pthread>
