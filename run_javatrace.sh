@@ -50,11 +50,12 @@ rm $tmp_dir/$executable_name
 printf "\t[...ok!]\n"
 
 printf "Running docker container extrae/javatrace "
-container_id=$(docker run -d -t \
+container_id=$(docker run -d -t  \
 			--env="DISPLAY" \
 			--net=host \
 			--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
-			extrae/javatrace )
+			--privileged \
+            extrae/javatrace )
 
 printf "\t[...ok!] Container ID: $container_id\n"
 

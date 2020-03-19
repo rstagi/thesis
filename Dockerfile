@@ -19,6 +19,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
+RUN sh -c 'echo -1 >/proc/sys/kernel/perf_event_paranoid'
+
 COPY ./installation ./tmp/installation
 
 RUN java -jar /tmp/installation/aspectj-1.9.5.jar -to /usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/
