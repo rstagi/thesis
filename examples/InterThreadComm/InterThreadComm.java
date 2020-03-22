@@ -12,14 +12,14 @@ public class InterThreadComm
         { 
             @Override
             public void run() 
-            { 
+            {
                 try
                 { 
-                    pc.produce(); 
+                    pc.produce();
                 } 
                 catch(InterruptedException e) 
                 { 
-                    e.printStackTrace(); 
+                    e.printStackTrace();
                 } 
             } 
         }); 
