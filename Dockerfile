@@ -22,7 +22,7 @@ COPY ./installation ./tmp/installation
 RUN java -jar /tmp/installation/aspectj-1.9.5.jar -to /usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/
 RUN cd /tmp/installation && tar xjf wxparaver-4.8.2-Linux_x86_64.tar.bz2 && mv ./wxparaver-4.8.2-Linux_x86_64/ /usr/share/wxparaver/
 RUN cd /tmp/installation && ./extrae_configure.sh && cd extrae && make -j$(nproc) && make install
-RUN cd / && rm -r tmp/installation
+#RUN rm -r /tmp/installation
 RUN mkdir -p /home/javatraces
 RUN chmod 666 -R /home/javatraces
 

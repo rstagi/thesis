@@ -46,7 +46,7 @@ if [ "$recursive" = "yes" ]; then
 fi
 
 cp $options $target_dir/* $tmp_dir >& /dev/null
-rm $tmp_dir/$executable_name
+rm $tmp_dir/$executable_name >& /dev/null
 printf "\t[...ok!]\n"
 
 printf "Running docker container extrae/javatrace "
@@ -57,7 +57,7 @@ container_id=$(docker run -d -t  \
 			--privileged \
             extrae/javatrace )
 
-printf "\t[...ok!] Container ID: $container_id\n"
+printf "\t[...ok!]\nContainer ID: $container_id\n"
 
 printf "Removing old files from the container "
 docker exec -it $container_id rm -r /home/javatraces >& /dev/null
