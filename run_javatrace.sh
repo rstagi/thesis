@@ -1,28 +1,31 @@
 #!/bin/bash
 
 if [ $# = 0 ]; then
-	printf "Usage: $0 [-jar <JarFile>] [-r, -R] [-show] [-stop] <target> \n"
+	printf "Usage: $0 [-cp <classpath>] [-spark] [-r, -R] [-show] [-stop] <target> \n"
 	exit 1
 fi
 
 recursive="no"
-jartarget=""
+user_cp=""
 show="no"
 target=""
 options="i"
 stop="no"
+sparo="no"
 executable_name=`basename $0`
 while test $# != 0; do
 	arg=$1
 	if [ "$arg" = "-R" -o "$arg" = "-r" ]; then
 		recursive="yes"
-	elif [ "$arg" = "-jar" ]; then
+	elif [ "$arg" = "-cp" ]; then
         shift
-		jartarget=$1
+		user_cp=$1
 	elif [ "$arg" = "-show" ]; then
 		show="yes"
 	elif [ "$arg" = "-stop" ]; then
         stop="yes"
+	elif [ "$arg" = "-spark" ]; then
+		spark="yes"
     else
 		target=$arg
 	fi
@@ -82,11 +85,16 @@ fi
 
 printf "Executing the program inside the docker image.\n\n"
 
-if [ "$jartarget" != "" ]; then
-	options="-jar $jartarget"
+options="-v -keep"
+if [ "$user_cp" != "" ]; then
+	options="$options -cp $user_cp"
 fi
 
-docker exec -it -w /home/javatraces -e CLASSPATH=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib/ -e EXTRAE_CONFIG_FILE=extrae.xml $container_id extraej -v -keep ${options} -- ${target}
+if [ "$spark" == "yes" ]; then
+	options="$options -spark"
+fi
+
+docker exec -it -w /home/javatraces -e EXTRAE_CONFIG_FILE=extrae.xml $container_id extraej ${options} -- ${target}
 
 printf "Copying files back to the temp directory "
 docker cp $container_id:home/javatraces/ $tmp_dir/ > /dev/null
