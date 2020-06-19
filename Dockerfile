@@ -8,6 +8,7 @@ RUN zypper install -y java java-1_8_0-openjdk java-1_8_0-openjdk-devel
 ENV CLASSPATH /usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/lib/:${CLASSPATH}
 RUN zypper install -y papi papi-devel
 RUN zypper install -y libxml2 libxml2-devel
+RUN zypper install -y libunwind-devel
 RUN zypper install -y gtk2-devel
 RUN zypper install -y vim
 RUN zypper install -y bzip2
@@ -28,7 +29,7 @@ RUN cd /tmp && wget http://downloads.lightbend.com/scala/2.12.1/scala-2.12.1.rpm
 RUN cd /tmp && zypper install --allow-unsigned-rpm -y ./scala-2.12.1.rpm
 
 #Spark
-RUN cd /tmp && wget https://mirror.nohup.it/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz
+RUN cd /tmp && wget --no-check-certificate https://mirror.nohup.it/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz
 RUN cd /tmp && tar xzf spark-3.0.0-preview2-bin-hadoop2.7.tgz
 RUN cd /tmp && mv spark-3.0.0-preview2-bin-hadoop2.7 /usr/local/spark
 ENV PATH ${PATH}:/usr/local/spark/bin
@@ -48,7 +49,7 @@ RUN cd /tmp && tar xjf wxparaver-4.8.2-Linux_x86_64.tar.bz2 && mv ./wxparaver-4.
 
 #Extrae
 COPY ./installation/extrae /tmp/extrae
-#RUN cd /tmp && git clone https://github.com/rstagi/extrae.git && cd extrae && git checkout javatrace_devel && git pull
+#RUN cd /tmp && git clone https://github.com/rstagi/extrae.git && cd extrae && git checkout javatrace && git pull
 ENV MPI_ROOT /usr/lib64/mpi/gcc/openmpi
 RUN cd /tmp/extrae && ./bootstrap && ./configure  --with-mpi=${MPI_ROOT} \
                             --enable-openmp \
@@ -57,7 +58,8 @@ RUN cd /tmp/extrae && ./bootstrap && ./configure  --with-mpi=${MPI_ROOT} \
                             --enable-pthread \
                             --with-java-jdk=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
                             --with-java-aspectj=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0 \
-                            --without-unwind --without-elf \
+                            --with-unwind=/usr \
+                            --without-elf \
                             --with-binary-type=64
 ENV CC gcc
 ENV CXX g++
